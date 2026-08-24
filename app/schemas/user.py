@@ -1,8 +1,14 @@
 from pydantic import BaseModel
 
 class UserCreate(BaseModel):
-  id: int
-  email: str
-  hashed_pass: str
-  
-  
+    email: str
+    password: str
+
+class UserUpdate(BaseModel):
+    email: str | None = None
+    hashed_pass: str | None = None
+    
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    
