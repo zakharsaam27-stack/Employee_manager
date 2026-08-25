@@ -15,3 +15,5 @@ htmlcov/
 *$py.class
 env/
 venv/
+build/
+dist/

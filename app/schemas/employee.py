@@ -14,6 +14,9 @@ class EmployeeResponse(BaseModel):
     user: UserResponse
     department: DepartmentInfo
     job_title: JobTitleInfo
+
+class EmployeeInfo(EmployeeResponse):
+    pass
     
 class EmployeeUpdate(BaseModel):
     full_name: str | None = None

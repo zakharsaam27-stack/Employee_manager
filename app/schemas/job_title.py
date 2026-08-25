@@ -5,7 +5,7 @@ class JobTitleInfo(BaseModel):
     id: int
     name: str
     
-class JobTitleResponce(JobTitleInfo):
+class JobTitleResponse(JobTitleInfo):
     employees: list[EmployeeResponse]
     
 class JobTitleUpdate(BaseModel):

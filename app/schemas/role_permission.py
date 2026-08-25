@@ -7,3 +7,15 @@ class RolePermimssionResponse(BaseModel):
     permission_id: int
     role: RoleInfo
     permission: PermissionInfo
+    
+class RolePermissionInfo(RolePermimssionResponse):
+    pass
+    
+class RolePermissionCreate(RolePermimssionResponse):
+    pass
+
+class RolePermissionUpdate(BaseModel):
+    role_id: int | None = None
+    permission_id: int | None = None
+    role: RoleInfo | None = None
+    permission: PermissionInfo | None = None
