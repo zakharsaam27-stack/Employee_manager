@@ -7,6 +7,7 @@ class EmployeeCreate(BaseModel):
     full_name: str
     department_id: int
     job_title_id: int
+    disabled: bool = False
     
 class EmployeeResponse(BaseModel):
     id: int
@@ -14,6 +15,7 @@ class EmployeeResponse(BaseModel):
     user: UserResponse
     department: DepartmentInfo
     job_title: JobTitleInfo
+    disabled: bool = False
 
 class EmployeeInfo(EmployeeResponse):
     pass
@@ -23,3 +25,4 @@ class EmployeeUpdate(BaseModel):
     user: UserResponse | None = None
     department: DepartmentInfo | None = None
     job_title: JobTitleInfo | None = None
+    disabled: bool | None = None

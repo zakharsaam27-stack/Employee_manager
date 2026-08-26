@@ -10,4 +10,4 @@ AsyncSessionLocal = async_sessionmaker(
 
 async def get_session():
     async with AsyncSessionLocal() as session:
-      yield session
+        yield session

@@ -12,6 +12,7 @@ class User(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(unique=True)
     hashed_pass: Mapped[str]
+    disabled: Mapped[bool] = mapped_column(default=False)
 
     employee: Mapped["Employee"] = relationship("Employee",
         back_populates="user")
