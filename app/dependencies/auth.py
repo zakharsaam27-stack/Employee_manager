@@ -5,11 +5,12 @@ from fastapi.security import OAuth2PasswordBearer
 from app.models import User, Employee
 from app.core.security import decode_access_token
 from app.services import get_user_roles
+from app.db.session import get_session
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
 async def get_current_user(
-    asyncSession: AsyncSession,
+    asyncSession = Depends(get_session),
     token: str = Depends(oauth2_scheme),
 ):  
     payload = decode_access_token(token)
@@ -38,7 +39,7 @@ async def get_current_active_user(
 
 
 async def get_current_employee(
-    asyncSession: AsyncSession,
+    asyncSession = Depends(get_session),
     current_active_user = Depends(get_current_active_user)
 ):
     stmt = (
@@ -53,7 +54,7 @@ async def get_current_employee(
 
 
 async def get_current_admin_user(
-    asyncSession: AsyncSession,
+    asyncSession = Depends(get_session),
     current_active_user = Depends(get_current_active_user),
 ):
     user_roles = await get_user_roles(

@@ -1,10 +1,12 @@
-from pydantic import BaseModel
-from app.schemas.employee import EmployeeResponse
+from pydantic import BaseModel, ConfigDict
+from app.schemas.employeeInfo import EmployeeInfo
 
 class DepartmentResponse(BaseModel):
     id: int
     name: str
-    employees: list[EmployeeResponse]
+    employees: list[EmployeeInfo]
+    
+    model_config = ConfigDict(from_attributes=True)
     
 class DepartmentInfo(BaseModel):
     id: int
@@ -12,8 +14,6 @@ class DepartmentInfo(BaseModel):
     
 class DepartmentCreate(BaseModel):
     name: str
-    employees: list[EmployeeResponse]
     
 class DepartmentUpdate(BaseModel):
     name: str | None = None
-    employees: list[EmployeeResponse] | None = None

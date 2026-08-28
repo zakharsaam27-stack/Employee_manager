@@ -10,7 +10,7 @@ ALGORITHM = settings.algorithm
 
 def hash_password(password: str):
     hashed_pass = pwd_context.hash(password)
-    return hash_password
+    return hashed_pass
 
 def verify_password(password: str, hashed_pass: str):
     result = pwd_context.verify(password, hashed_pass)

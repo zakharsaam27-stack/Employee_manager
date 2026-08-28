@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from app.schemas.role import RoleInfo
+from pydantic import BaseModel, ConfigDict
+from app.schemas.roleInfo import RoleInfo
 from app.schemas.permission import PermissionInfo
 
 class RolePermimssionResponse(BaseModel):
@@ -7,6 +7,8 @@ class RolePermimssionResponse(BaseModel):
     permission_id: int
     role: RoleInfo
     permission: PermissionInfo
+    
+    model_config = ConfigDict(from_attributes=True)
     
 class RolePermissionInfo(RolePermimssionResponse):
     pass
@@ -19,3 +21,5 @@ class RolePermissionUpdate(BaseModel):
     permission_id: int | None = None
     role: RoleInfo | None = None
     permission: PermissionInfo | None = None
+    
+    model_config = ConfigDict(from_attributes=True)

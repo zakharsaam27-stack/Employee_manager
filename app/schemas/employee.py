@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from app.schemas.user import UserResponse
 from app.schemas.department import DepartmentInfo
-from app.schemas.job_title import JobTitleInfo
+from app.schemas.job_title_info import JobTitleInfo
 
 class EmployeeCreate(BaseModel):
     full_name: str
@@ -16,9 +16,8 @@ class EmployeeResponse(BaseModel):
     department: DepartmentInfo
     job_title: JobTitleInfo
     disabled: bool = False
-
-class EmployeeInfo(EmployeeResponse):
-    pass
+    
+    model_config = ConfigDict(from_attributes=True)
     
 class EmployeeUpdate(BaseModel):
     full_name: str | None = None
@@ -26,3 +25,5 @@ class EmployeeUpdate(BaseModel):
     department: DepartmentInfo | None = None
     job_title: JobTitleInfo | None = None
     disabled: bool | None = None
+    
+    model_config = ConfigDict(from_attributes=True)

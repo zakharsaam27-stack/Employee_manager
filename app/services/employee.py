@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, or_
+from sqlalchemy import select, or_, delete
 from app.models import Employee
 from app.schemas import EmployeeCreate, EmployeeUpdate
 
@@ -59,3 +59,12 @@ async def update_employee(
     await asyncSession.refresh(employee)
     
     return employee
+
+
+async def delete_employee(
+    asyncSession: AsyncSession,
+    employeeId: int
+):
+    stmt = delete(Employee).where(Employee.id == employeeId)
+    await asyncSession.execute(stmt)
+    await asyncSession.commit()
